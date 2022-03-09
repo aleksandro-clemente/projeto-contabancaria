@@ -1,0 +1,64 @@
+import javax.swing.JOptionPane;
+
+public abstract class Conta implements InterConta{
+	
+	private double saldo;
+	private Cliente cliente;
+	public Conta(Cliente cliente,double saldo) {
+		this.cliente = cliente;
+		this.saldo = saldo;
+	}
+	public void saque(double valor) {
+		if(saldo >=valor) {
+			this.saldo-=valor;
+			System.out.println("Saque realizado com sucesso");
+		}else {
+			System.out.println("Saldo insuficiente");
+		}
+	}
+	public void deposito(double valor) {
+		this.saldo+=valor;
+	}
+	public void transferencia(double valor,Conta conta) {
+		if(valor <= this.saldo) {
+			this.saque(valor);
+			conta.deposito(valor);
+			System.out.println("Transferência realizada com sucesso");
+		}else {
+			System.out.println("Saldo insuficiente");
+		}
+
+	}
+	
+	public static Conta criarConta(String nomeCliente,int codigo) {
+		Cliente cliente = new Cliente(nomeCliente);
+		Conta conta = null;
+		if(codigo == 1) {
+			 conta = new ContaPoupanca(cliente,0.0);
+		}else if(codigo == 2){
+			 conta = new ContaCorrente(cliente,0.0);
+		}
+		System.out.println("Conta criada com sucesso!");
+		System.out.println("Titular: "+cliente.getNome());
+		System.out.println("Código da conta: "+codigo);
+		return conta;
+	}
+	public double exibirSaldo() {
+		System.out.println("Titular da Conta: "+cliente.getNome());
+		return this.getSaldo();
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+		
+	
+}

@@ -1,0 +1,14 @@
+
+public class ContaPoupanca extends Conta{
+	private int agencia;
+	private int numero;
+	
+	public ContaPoupanca(Cliente cliente, double saldo) {
+		super(cliente, saldo);
+	}
+	@Override
+	public double exibirSaldo() {
+		System.out.println("---Saldo conta poupança--");
+		return super.exibirSaldo();
+	}
+}

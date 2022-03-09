@@ -1,0 +1,14 @@
+
+public class ContaCorrente extends Conta{
+	
+	public ContaCorrente(Cliente cliente, double saldo) {
+		super(cliente, saldo);
+		
+	}
+	@Override
+	public double exibirSaldo() {
+		System.out.println("---Saldo conta Corrente--");
+		return super.exibirSaldo();
+	}
+	
+}

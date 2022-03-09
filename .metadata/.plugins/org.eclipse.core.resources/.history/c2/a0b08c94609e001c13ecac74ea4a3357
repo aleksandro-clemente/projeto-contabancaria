@@ -1,0 +1,4 @@
+
+public interface InterConta {
+	void saque(double valor);
+}

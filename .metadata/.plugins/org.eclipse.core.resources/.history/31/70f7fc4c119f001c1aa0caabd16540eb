@@ -1,0 +1,73 @@
+import javax.swing.JOptionPane;
+
+public abstract class Conta implements InterConta{
+	
+	private double saldo;
+	private Cliente cliente;
+	public Conta(Cliente cliente,double saldo) {
+		this.cliente = cliente;
+		this.saldo = saldo;
+	}
+	public void saque(double valor) {
+		if(saldo >=valor) {
+			this.saldo-=valor;
+			System.out.println("Saque realizado com sucesso");
+		}else {
+			System.out.println("Saldo insuficiente");
+		}
+	}
+	public void deposito(double valor) {
+		this.saldo+=valor;
+	}
+	public void transferencia(double valor,Conta conta) {
+		if(valor <= this.saldo) {
+			this.saque(valor);
+			conta.deposito(valor);
+			System.out.println("Transferência realizada com sucesso");
+		}else {
+			System.out.println("Saldo insuficiente");
+		}
+
+	}
+	
+	public static Conta criarConta() {
+		String confirme = JOptionPane.showInputDialog("Quer criar uma conta? s/n");
+		if(confirme.equals("s")) {
+			Conta conta = null;
+			String nome = JOptionPane.showInputDialog("Digite o nome do cliente: ");
+			Cliente cliente = new Cliente(nome);
+			String tipo = JOptionPane.showInputDialog("1-Conta Corrente,2-Conta Poupança");
+			int codigo = Integer.parseInt(tipo);
+			
+			if(codigo == 1) {
+				conta = new ContaCorrente(cliente,0.0);
+			}else {
+				conta = new ContaPoupanca(cliente,0.0);
+			}
+			JOptionPane.showMessageDialog(null,"Conta criada com sucesso!"+
+					                           "\nTitular:"+cliente.getNome()+
+					                           "\nCódigo da Conta: "+codigo);
+			return conta;
+		}
+		
+		
+	}
+	public double exibirSaldo() {
+		System.out.println("Titular da Conta: "+cliente.getNome());
+		return this.getSaldo();
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+		
+	
+}

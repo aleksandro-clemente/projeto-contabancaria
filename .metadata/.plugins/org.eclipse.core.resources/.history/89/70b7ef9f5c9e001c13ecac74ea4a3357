@@ -1,0 +1,14 @@
+
+public class Main {
+	
+	public static void main(String args[]) {
+		Cliente cliente = new Cliente("Aleksandro da Silva Clemente");		
+		Cliente cliente2 = new Cliente("Joao Pereira silva");
+		
+		Conta contaCorrente = new ContaCorrente(cliente,1200);
+		Conta contaPoupanca = new ContaPoupanca(cliente2,5000);
+		
+		
+	}
+		
+}

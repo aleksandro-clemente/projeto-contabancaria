@@ -1,0 +1,17 @@
+
+public class Main {
+	
+	public static void main(String args[]) {
+		Cliente cliente = new Cliente("Aleksandro da Silva Clemente");		
+		Cliente cliente2 = new Cliente("Joao Pereira silva");
+		
+		Conta contaCorrente = new ContaCorrente(cliente,1200);
+		Conta contaPoupanca = new ContaPoupanca(cliente2,1500);
+		System.out.println(conta.exibirSaldo());
+		conta.deposito(120);
+		System.out.println(conta.exibirSaldo());
+		conta.saque(50);
+		System.out.println(conta.exibirSaldo());
+	}
+		
+}
